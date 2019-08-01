@@ -1,7 +1,9 @@
--name: changing port in a conf file
-ini_file:
-  path: /etc/nova.conf
-  section: keystone_authtoken
-  option: auth_port
-  value: 35356
-  backup: yes
+- hosts: localhost
+  tasks:
+  -name: changing port in a conf file
+    - ini_file:
+        path: /etc/nova.conf
+        section: keystone_authtoken
+        option: auth_port
+        value: 35356
+        backup: yes
