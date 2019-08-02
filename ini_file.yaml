@@ -7,3 +7,50 @@
         option: auth_port
         value: 35356
         backup: yes
+USER
+
+- hosts: localhost
+  tasks:
+  - name : create a cron job
+    user:
+        name: test_user
+        password: 'Admin@123'
+        state: present
+CRON
+
+- hosts: localhost
+  tasks:
+  - name : create a cron job
+    cron:
+        name: "Copy all rsnapshot backups from <hostname>"
+        minute: "0"
+        hour: "1"
+        job: "mkdir /tmp/jaladi"
+        user: root
+        cron_file: rsync_cron
+        state: present
+   
+   TEXT
+   
+- hosts: 127.0.0.1
+  connection: local
+  sudo: yes
+  tasks:
+  - name: ansible create directory with mode setting example
+    file:
+      path: /tmp/test_dir
+      state: directory
+      mode: "u=rw,g=wx,o=rwx"
+    tags: test
+
+  - name: create a file in the test_dir
+    file:
+      path: "//test_dir/test_file.txt"
+      state: touch
+    ignore_errors: yes
+    tags: test1
+
+  - name: install the latest version of NTP
+    yum:
+      name: ntp
+      state: latest
