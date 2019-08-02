@@ -1,0 +1,15 @@
+- name: Creates a cron file under /etc/cron.d
+  cron:
+    name: make directory
+    minute: 0
+    hour: 1
+    user: root
+    job: "mkdir /tmp/jaladi"
+    cron_file: add_folder
+  cron:
+    name : delete directory
+    minute : 1
+    hour : 1
+    user : root
+    job : "rm -rf /tmp/jaladi"
+    cron_file : delete_folder
