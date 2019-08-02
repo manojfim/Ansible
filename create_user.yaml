@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+  - name : create a cron job
+    user:
+        name: test_user
+        password: 'Admin@123'
+        state: present
