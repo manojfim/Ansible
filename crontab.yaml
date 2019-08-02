@@ -6,6 +6,7 @@
     user: root
     job: "mkdir /tmp/jaladi"
     cron_file: add_folder
+- name : delete a cron 
   cron:
     name : delete directory
     minute : 1
